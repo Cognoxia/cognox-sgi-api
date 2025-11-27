@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, belongsTo, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import Macroproceso from '#models/macroproceso'
+import Indicador from '#models/indicador'
 
 export default class Proceso extends BaseModel {
   @column({ isPrimary: true })
@@ -36,4 +37,7 @@ export default class Proceso extends BaseModel {
 
   @belongsTo(() => Macroproceso)
   declare macroproceso: BelongsTo<typeof Macroproceso>
+
+  @hasMany(() => Indicador)
+  declare indicadores: HasMany<typeof Indicador>
 }
